@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Hero } from './hero';
-import { HEROES } from './mock-heroes';
+import { Hero } from '../hero';
+import { HEROES } from '../mock-heroes';
 import { Observable, of } from 'rxjs';
-import {MessageService} from './message.service'
+import { MessageService } from '../message.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({
@@ -45,7 +45,7 @@ export class HeroService {
       catchError(this.handleError<Hero>(`getHero od=${id}`))
     );
   }
-  
+
   /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<Hero>{
     const url = `${this.heroesUrl}/${id}`;
