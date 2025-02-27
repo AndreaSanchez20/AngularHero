@@ -1,0 +1,6 @@
+@AngularHeroAPI_HostAddress = http://localhost:5042
+
+GET {{AngularHeroAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
