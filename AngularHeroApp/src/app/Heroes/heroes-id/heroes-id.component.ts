@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../../hero';
-import { HeroService } from '../../hero.service';
+import { HeroService } from '../../Services/hero.service';
 import { MessageService } from '../../message.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { MessageService } from '../../message.service';
 export class HeroesIdComponent implements OnInit{
 
     heroes: Hero[] = [];
-    
+
     constructor(private heroService: HeroService,
        private messageService: MessageService){};
 
