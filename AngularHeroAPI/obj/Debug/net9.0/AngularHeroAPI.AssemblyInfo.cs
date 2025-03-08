@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AngularHeroAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31f5e48665a52a85a6339d65c63a7bf98e4daaee")]
 [assembly: System.Reflection.AssemblyProductAttribute("AngularHeroAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AngularHeroAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

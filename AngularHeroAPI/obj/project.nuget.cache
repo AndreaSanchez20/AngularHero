@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ypV5BJnRwpE=",
+  "dgSpecHash": "H6V/OkT/clw=",
   "success": true,
-  "projectFilePath": "/Users/andsasan/Workspace/Angular-Hero/AngularHeroAPI/AngularHeroAPI.csproj",
+  "projectFilePath": "C:\\Workspace\\Prototype\\AngularHero\\AngularHeroAPI\\AngularHeroAPI.csproj",
   "expectedPackageFiles": [
-    "/Users/andsasan/.nuget/packages/microsoft.aspnetcore.openapi/9.0.2/microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
-    "/Users/andsasan/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.2\\microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
   ],
   "logs": []
 }
