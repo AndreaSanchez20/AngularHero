@@ -25,6 +25,18 @@ export class HeroService {
   }
 
    /** GET heroes from the server */
+  getHeroesFromServer(): Observable<Hero[]>{
+    return this.http.get<any>("http://localhost:5042/getheroes")
+      .pipe(
+        tap(_ => this.log('fetched heroes')),
+        catchError( error => {
+          debugger;
+          this.handleError<any>('getHeroesFromServer',[])
+          return of([]);
+        })
+      );
+  }
+
   getHeroes(): Observable<Hero[]>{
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
@@ -99,7 +111,9 @@ export class HeroService {
    * @param result - optional value to return as the observable result
    */
   private handleError<T>(operation = 'operation', result?: T){
+    debugger;
     return(error: any): Observable<T> => {
+      debugger;
       console.error(error);
       this.log(`${operation} failed: ${error.message}`)
       return of(result as T);
