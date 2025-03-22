@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { City } from '../_shared/models/city';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +33,17 @@ export class HeroService {
         catchError( error => {
           debugger;
           this.handleError<any>('getHeroesFromServer',[])
+          return of([]);
+        })
+      );
+  }
+  getCitiesFromServer(): Observable<City[]>{
+    return this.http.get<any>("http://localhost:5042/getcities")
+      .pipe(
+        tap(_ => this.log('fetched cities')),
+        catchError( error => {
+          debugger;
+          this.handleError<any>('getCitiesFromServer',[])
           return of([]);
         })
       );

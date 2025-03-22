@@ -4,5 +4,9 @@
         {{hero.name}}
     </a>
 </div>
-
+<div class = "cities-list">
+    <a *ngFor="let city of cities" routerLink="/detail/{{city.id}}">
+        {{city.cityName}}
+    </a>
+</div>
 <app-hero-search></app-hero-search>

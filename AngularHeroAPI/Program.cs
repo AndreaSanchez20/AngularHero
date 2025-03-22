@@ -59,9 +59,61 @@ var heroes = new List<Hero>
 app.MapGet("/getheroes", async (HeroeDbContext context) =>
 {
     var listOfHeroes = await context.Heroes.ToListAsync();
+    var listOfHeroes2 = await context.Heroes.ToListAsync();
     return listOfHeroes;
 })
 .WithName("GetHeroes");
+
+app.MapGet("/getcities", (HeroeDbContext context) =>
+{
+    var listOfCities = context.Cities.ToList();
+    return listOfCities;
+})
+.WithName("GetCities");
+
+app.MapPost("/add-hero", async (Hero newHero, HeroeDbContext context) =>
+{
+    context.Heroes.Add(newHero);
+    await context.SaveChangesAsync();
+    return newHero;
+}).WithName("AddHero");
+
+app.MapPut("/update-hero/{id}", async (int id, Hero newHero, HeroeDbContext context) =>
+{
+    //Find the existing hero by ID
+    var hero = await context.Heroes.FindAsync(id);
+    if(hero==null){
+        return Results.NotFound(new {message = "Hero not found"});
+    }
+    //update hero
+    hero.name = newHero.name;
+    await context.SaveChangesAsync();
+    return Results.Ok(newHero);
+}).WithName("UpdateHero");
+
+app.MapDelete("/delete-hero/{id}", async (int id, HeroeDbContext context) =>
+{
+    var hero = await context.Heroes.FindAsync(id);
+
+    if(hero == null){
+        return Results.NotFound(new {message = "Hero not found"});
+    }
+    context.Heroes.Remove(hero);
+    await context.SaveChangesAsync();
+    return Results.Ok(new {message = "Hero eliminated"});
+});
+
+app.MapGet("/gethero/{id}", async (int id, HeroeDbContext context) =>
+{
+    var hero = await context.Heroes.FindAsync(id);
+
+    if(hero == null){
+        return Results.NotFound(new {message = "Hero not found"});
+    }
+
+    return Results.Ok(hero);
+})
+.WithName("GetHero");
 
 app.Run();
 
