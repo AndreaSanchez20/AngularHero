@@ -12,6 +12,7 @@ import { City } from '../_shared/models/city';
 export class HeroService {
 
   private heroesUrl = 'api/heroes'
+  private heroesServerUrl = 'http://localhost:5042/add-hero"'
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -47,6 +48,21 @@ export class HeroService {
           return of([]);
         })
       );
+  }
+
+  updateHeroFromServer(hero: Hero):Observable<any>{
+    return this.http.put(`${"http://localhost:5042/update-hero"}/${hero.id}`, hero, this.httpOptions).pipe(
+      tap(_=> this.log(`updated hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHeroFromServer'))
+    )
+  }
+
+  getHeroFromServer(id: number): Observable<Hero>{
+    const url = `${"http://localhost:5042/gethero"}/${id}`;
+    return this.http.get<Hero>(url).pipe(
+      tap(_=> this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Hero>(`getHeroFromServer id=${id}`))
+    );
   }
 
   getHeroes(): Observable<Hero[]>{
@@ -93,12 +109,25 @@ export class HeroService {
       catchError(this.handleError<Hero>('addHero'))
     )
   }
+  addHeroFromServer(hero: Hero): Observable<Hero>{
+    return this.http.post<Hero>("http://localhost:5042/add-hero", hero, this.httpOptions).pipe(
+      tap((newHero: Hero) => this.log(`added hero w/ id = ${newHero.id}`)),
+      catchError(this.handleError<Hero>('addHeroFromServer'))
+    )
+  }
   /** DELETE: delete the hero from the server */
   deleteHero(id: number): Observable<Hero>{
     const url = `${this.heroesUrl}/${id}`;
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
       tap(_ => this.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
+    )
+  }
+  deleteHeroFromServer(id: number): Observable<Hero>{
+    const url = `${"http://localhost:5042/delete-hero"}/${id}`;
+    return this.http.delete<Hero>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Hero>('deleteHeroFromServer'))
     )
   }
   /* GET heroes whose name contains search term */

@@ -16,7 +16,7 @@ export class HeroesIdComponent implements OnInit{
        private messageService: MessageService){};
 
     getHeroes():void{
-      this.heroService.getHeroes()
+      this.heroService.getHeroesFromServer()
       .subscribe(heroes => this.heroes = heroes);
     }
 
@@ -32,13 +32,13 @@ export class HeroesIdComponent implements OnInit{
     add(name:string): void{
       name = name.trim();
       if(!name){return;}
-      this.heroService.addHero({ name } as Hero)
+      this.heroService.addHeroFromServer({ name } as Hero)
       .subscribe(hero=> {
         this.heroes.push(hero);
       });
     }
     delete(hero: Hero):void{
       this.heroes = this.heroes.filter( h => h !== hero);
-      this.heroService.deleteHero(hero.id).subscribe();
+      this.heroService.deleteHeroFromServer(hero.id).subscribe();
     }
 }
