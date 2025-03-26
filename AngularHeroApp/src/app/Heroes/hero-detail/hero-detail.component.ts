@@ -23,8 +23,14 @@ export class HeroDetailComponent {
       .subscribe(hero=> this.hero =hero);
   }
 
+  getHeroFromServer(): void{
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.heroService.getHeroFromServer(id)
+      .subscribe(hero=> this.hero =hero);
+  }
+
   ngOnInit():void{
-    this.getHero();
+    this.getHeroFromServer();
   }
 
   goBack():void{
@@ -32,7 +38,7 @@ export class HeroDetailComponent {
   }
   save():void{
     if(this.hero){
-      this.heroService.updateHero(this.hero)
+      this.heroService.updateHeroFromServer(this.hero)
       .subscribe(()=>this.goBack());
     }
   }
